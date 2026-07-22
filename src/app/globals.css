@@ -44,6 +44,7 @@ body {
   background-color: var(--bg-oled);
   color: var(--text-secondary);
   height: 100vh;
+  height: 100dvh;
   width: 100vw;
   overflow: hidden;
 }
@@ -68,6 +69,7 @@ body {
 .oled-app-shell {
   display: flex;
   height: 100vh;
+  height: 100dvh;
   width: 100vw;
   overflow: hidden;
   background-color: var(--bg-oled);
@@ -193,6 +195,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   padding: 2rem 2.5rem;
   background-color: var(--bg-oled);
@@ -1417,7 +1420,7 @@ body {
   left: 0;
   right: 0;
   padding: 1.5rem 2rem 2.25rem;
-  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.85) 45%, #000000 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(9, 9, 11, 0.85) 45%, var(--bg-panel) 100%);
   display: flex;
   justify-content: center;
   pointer-events: none; /* let clicks pass through outer area */
@@ -1570,18 +1573,26 @@ body {
 }
 
 /* ── MOBILE RESPONSIVE ── */
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .extractor-view {
     grid-template-columns: 1fr;
+    gap: 1.25rem;
     overflow-y: auto;
   }
   .workspace-panel {
     overflow-y: visible;
     height: auto;
+    padding: 1.25rem;
   }
+}
+
+@media (max-width: 1024px) {
   .settings-grid {
     grid-template-columns: 1fr 1fr;
     gap: 0.75rem;
+  }
+  .temp-column {
+    grid-column: span 2;
   }
 }
 
@@ -1593,26 +1604,61 @@ body {
     width: 100%;
     height: 60px;
     flex-direction: row;
-    padding: 0 1.25rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
     border-right: none;
     border-bottom: 1px solid var(--border-subtle);
+  }
+  .sidebar-brand h2 {
+    font-size: 0.95rem;
+    margin: 0;
+  }
+  .sidebar-brand span {
+    display: none;
   }
   .sidebar-nav {
     flex-direction: row;
     margin-top: 0;
-    gap: 1rem;
+    gap: 0.5rem;
     align-items: center;
+  }
+  .nav-button {
+    padding: 0.4rem 0.6rem;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+  }
+  .sidebar-footer {
+    display: none;
   }
   .oled-workspace {
     height: calc(100vh - 60px);
+    height: calc(100dvh - 60px);
+    padding: 0.75rem;
+  }
+  .workspace-panel {
     padding: 1rem;
   }
+  
+  /* Chat Mobile Adjustments */
   .chat-placeholder-start-premium {
-    padding: 3rem 1rem 1rem;
+    padding: 3rem 1rem 1.5rem;
+  }
+  .chat-placeholder-start-premium h3 {
+    font-size: 1.25rem;
+  }
+  .start-emoji-premium {
+    font-size: 3.5rem;
+  }
+  .start-desc-text {
+    font-size: 0.75rem;
+    padding: 0 1rem;
   }
   .settings-trigger-box-premium {
     flex-direction: column;
     align-items: center;
+    gap: 0.5rem;
+    margin: 1rem 0 1.25rem;
   }
   .chat-inline-settings-overlay-premium {
     position: fixed;
@@ -1621,7 +1667,72 @@ body {
     transform: translate(-50%, -50%);
     right: auto;
   }
+  .active-console-header-premium {
+    padding: 0.75rem 1rem;
+  }
+  .header-parameters-inline-dock-premium {
+    gap: 0.5rem;
+  }
+  .model-pill-trigger-premium {
+    font-size: 0.7rem;
+    padding: 0.35rem 0.75rem;
+  }
+  .change-vibe-link-premium {
+    font-size: 0.7rem;
+    padding: 0.35rem 0.75rem;
+  }
+  .console-log-scroll-premium {
+    padding: 1.5rem 1rem 5.5rem;
+  }
+  .message-bubble-body-premium {
+    max-width: 92%;
+    gap: 0.5rem;
+  }
+  .message-bubble-content-premium {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    padding: 0.6rem 0.85rem;
+    border-radius: 14px;
+  }
   .chat-input-wrapper-floating {
-    padding: 1rem;
+    padding: 0.75rem 1rem 1.25rem;
+  }
+  .chat-send-form-floating {
+    padding: 0.25rem 0.35rem 0.25rem 1rem;
+  }
+}
+
+@media (max-width: 550px) {
+  .model-pill-trigger-premium span {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+  .temp-column {
+    grid-column: span 1;
+  }
+  .sheet-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .chat-vibe-bar {
+    gap: 0.75rem;
+    padding-bottom: 0.75rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .vibe-toggle-group-segmented {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .vibe-toggle-btn-segmented {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.7rem;
+    gap: 0.25rem;
   }
 }

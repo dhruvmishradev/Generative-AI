@@ -126,6 +126,7 @@ export default function App() {
 
   const chatEndRef = useRef<HTMLDivElement>(null);
   const chatSettingsRef = useRef<HTMLDivElement>(null);
+  const outputPanelRef = useRef<HTMLDivElement>(null);
 
   // Load backend config status
   useEffect(() => {
@@ -142,6 +143,19 @@ export default function App() {
     }
     fetchConfig();
   }, []);
+
+  // Automatically scroll down to the structured output panel when extraction starts or finishes (for mobile/tablet layouts)
+  useEffect(() => {
+    if (extractLoading && outputPanelRef.current) {
+      outputPanelRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [extractLoading]);
+
+  useEffect(() => {
+    if (extractedMovie && outputPanelRef.current) {
+      outputPanelRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [extractedMovie]);
 
   // Close chat inline settings when clicking outside
   useEffect(() => {
@@ -477,7 +491,7 @@ export default function App() {
               </div>
 
               {/* OUTPUT PANEL */}
-              <div className="workspace-panel output-panel">
+              <div ref={outputPanelRef} className="workspace-panel output-panel">
                 <div className="panel-header header-between">
                   <h3>Structured Output</h3>
                   {extractedMovie && (
