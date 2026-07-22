@@ -937,9 +937,9 @@ body {
 .chat-main-area-premium {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  overflow: hidden;
   flex-grow: 1;
+  min-height: 0;
+  overflow: hidden;
 }
 
 /* Elevate Welcome screen for start */
@@ -953,7 +953,8 @@ body {
   gap: 1rem;
   padding: 6rem 2rem 2rem;
   width: 100%;
-  height: 100%;
+  flex-grow: 1;
+  min-height: 0;
   background-color: var(--bg-panel);
   border: 1px solid var(--border-subtle);
   border-radius: 16px;
@@ -1173,7 +1174,8 @@ body {
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  flex-grow: 1;
+  min-height: 0;
   overflow: hidden;
   background-color: var(--bg-panel);
   border: 1px solid var(--border-subtle);
@@ -1583,6 +1585,16 @@ body {
     overflow-y: visible;
     height: auto;
     padding: 1.25rem;
+  }
+  .output-panel {
+    overflow: visible;
+  }
+  .output-body {
+    overflow-y: visible;
+    height: auto;
+  }
+  .raw-json-viewer-console {
+    height: auto;
   }
 }
 
